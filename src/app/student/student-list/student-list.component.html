@@ -1,0 +1,69 @@
+<!-- <p>student-list works!</p>
+<ul>
+    <li *ngFor = "let student of StudentList">
+       <a >{{student.lastname}}</a></li>
+
+ </ul> -->
+
+ 
+<section class="py-2 bg-dark text-light">
+    <div class="container">
+        <div class="row">
+            <h2>Student system</h2>
+        </div>
+    </div>
+</section>
+<section class="services py-5 bg-light1 text-center">
+    <div class="container">
+       <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-2"></div>
+           <div class="col-xs-12 col-sm-12 col-md-8">
+            <div class="card  mb-3">
+                <table class="table table-bordered table-striped table-hover" datatable [dtOptions]="dtOptions"  >
+                    <thead>
+                        <tr style="background-color: crimson !important;">
+                          <th>ID</th>
+                          <th>First name</th>
+                          <th>Date of birth</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        
+                    <tr  *ngFor = "let student of studentList ; index as i"> 
+                        <td>{{i+1}}</td>
+                        <td>{{student.firstName}} {{student.lastname}}</td>
+                        <td>{{student.dateOfBirth | date: 'dd/MM/yyyy'}}</td>
+                        <td>   <button class="btn btn-sm" (click)="loadpopup(student.id) ">view</button></td>
+                    </tr>
+                   </tbody>
+                 
+                </table>
+
+    		    </div>
+               
+    		</div>
+    	  
+    	   
+       </div>
+    </div>
+</section>
+
+
+<!-- main app container -->
+<div>
+    
+    
+    <jw-modal id="modal-1">
+        <h2>Student Details</h2>
+        <hr />
+        <p>First Name: {{ studentData?.firstName }}</p>
+        <p>Last Name: {{ studentData?.lastname}}</p> 
+        <p>Date of birth: {{ studentData?.dateOfBirth | date:'dd-MMM-yyyy'}} </p> 
+        <p>College Name: {{ studentData?.studentEnrollment?.collegeName}} </p> 
+        <p>Enrl: Start Date: {{ studentData?.studentEnrollment?.enrollmentStartDate | date:'dd-MMM-yyyy'}} </p> 
+        <p>Enrl: End Date: {{ studentData?.studentEnrollment?.enrollmentEndDate | date:'dd-MMM-yyyy'}}</p> 
+        <p>Grade: {{ studentData?.studentEnrollment?.studentGrade?.grade}} </p> 
+        <button (click)="modalService.close();">Close</button>
+    </jw-modal>
+    
+</div>
